@@ -16,7 +16,7 @@ st.set_page_config(page_title="PhysicsTalk",
                   )
 openai.api_key = st.secrets.openai_key
 st.title("PhysicsTalk")
-st.info("Contact me [there](https://kitova.me/about/)", icon="🐋")
+# st.info("Contact me [there](https://kitova.me/about/)", icon="🐋")
          
 if "messages" not in st.session_state.keys(): # Initialize the chat messages history
     st.session_state.messages = [
