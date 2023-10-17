@@ -20,8 +20,9 @@ if "messages" not in st.session_state.keys(): # Initialize the chat messages his
 
 @st.cache_resource(show_spinner=False)
 def load_data():
+    required_exts = [".pdf"]
     with st.spinner(text="Loading and indexing docs – hang tight! This should take 1-2 minutes."):
-        reader = SimpleDirectoryReader(input_dir="./data", recursive=True)
+        reader = SimpleDirectoryReader(input_dir="./data", required_exts=required_exts, recursive=True)
         docs = reader.load_data()
         service_context = ServiceContext.from_defaults(
           llm=OpenAI(
@@ -31,7 +32,7 @@ def load_data():
             Assume that all questions are related to Physics. n\
             Keep your answers technical and based on facts – do not hallucinate features."))
         index = VectorStoreIndex.from_documents(docs, service_context=service_context)
-        return index
+        return index   
 
 index = load_data()
 # chat_engine = index.as_chat_engine(chat_mode="condense_question", verbose=True, system_prompt="You are an expert on Physics and your job is to answer technical questions. Assume that all questions are related to the Streamlit Python library. Keep your answers technical and based on facts – do not hallucinate features.")
