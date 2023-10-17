@@ -12,6 +12,7 @@ st.set_page_config(page_title="PhysicsTalk",
                                    'Get Help': 'https://www.extremelycoolapp.com/help',
                                    'Report a bug': "https://www.extremelycoolapp.com/bug",
                                    'About': "# This is a header. This is an *extremely* cool app!"
+                   }
                   )
 openai.api_key = st.secrets.openai_key
 st.title("PhysicsTalk")
