@@ -33,8 +33,9 @@ def load_data():
           llm=OpenAI(
             model="gpt-3.5-turbo", 
             temperature=0.5, 
-            system_prompt="You are an expert on the Streamlit Python library and your job is to answer technical questions. 
-            Assume that all questions are related to the Streamlit Python library. Keep your answers technical and based on facts – do not hallucinate features."))
+            system_prompt="You are an expert on Physics and your job is to answer technical questions. n/
+            Assume that all questions are related to the Streamlit Python library. n/
+            Keep your answers technical and based on facts – do not hallucinate features."))
         index = VectorStoreIndex.from_documents(docs, service_context=service_context)
         return index
 
