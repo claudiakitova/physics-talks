@@ -4,13 +4,13 @@ from llama_index.llms import OpenAI
 import openai
 from llama_index import SimpleDirectoryReader
 
-st.set_page_config(page_title="PhysicsTalk", 
-                   page_icon="🐋", layout="centered", 
+st.set_page_config(page_title="PhysicsTalks", 
+                   page_icon="☢️", layout="centered", 
                    initial_sidebar_state="auto",
                    menu_items=None)
 
 openai.api_key = st.secrets.openai_key
-st.title("PhysicsTalk")
+st.title("PhysicsTalks ☢️")
          
 if "messages" not in st.session_state.keys(): # Initialize the chat messages history
     st.session_state.messages = [
