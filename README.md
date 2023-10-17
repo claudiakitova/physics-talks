@@ -1,13 +1,13 @@
-# Chat with the Streamlit docs
+# Chat with the Physics docs
 
-Build a chatbot powered by LlamaIndex that augments GPT 3.5 with the content of the Streamlit docs (or your own data).
+Build a chatbot powered by LlamaIndex that augments GPT 3.5 with the content of some scientific papers.
 
 - Takes user queries via Streamlit's `st.chat_input` and displays both user queries and model responses with `st.chat_message`
 - Uses LlamaIndex to load and index data and create a chat engine that will retrieve context from that data to respond to each user query
 
 ## Demo App
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://lllamaindex-chat-with-docs.streamlit.app/)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://physics-talks.streamlit.app/)
 
 ## Get an OpenAI API key
 
