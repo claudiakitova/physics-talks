@@ -1,4 +1,4 @@
-# 🦙📚 LlamaIndex - Chat with the Streamlit docs
+# Chat with the Streamlit docs
 
 Build a chatbot powered by LlamaIndex that augments GPT 3.5 with the content of the Streamlit docs (or your own data).
 
