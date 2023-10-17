@@ -6,8 +6,9 @@ from llama_index import SimpleDirectoryReader
 
 st.set_page_config(page_title="PhysicsTalk", 
                    page_icon="🐋", layout="centered", 
-                   initial_sidebar_state="expanded", # "auto"
-                   menu_items=None
+                   initial_sidebar_state="auto",
+                   menu_items=None)
+
 openai.api_key = st.secrets.openai_key
 st.title("PhysicsTalk")
          
