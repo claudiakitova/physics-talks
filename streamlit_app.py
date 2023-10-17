@@ -4,18 +4,17 @@ from llama_index.llms import OpenAI
 import openai
 from llama_index import SimpleDirectoryReader
 
-st.set_page_config(page_title="PhysicsTalk: Exploring the Universe through Conversation.", 
+st.set_page_config(page_title="PhysicsTalk", 
                    page_icon="🐋", layout="centered", 
-                   # initial_sidebar_state="auto", 
+                   initial_sidebar_state="expanded", # "auto"
                    # menu_items=None
-                   initial_sidebar_state="expanded",
                    menu_items={
                                    'Get Help': 'https://www.extremelycoolapp.com/help',
                                    'Report a bug': "https://www.extremelycoolapp.com/bug",
                                    'About': "# This is a header. This is an *extremely* cool app!"
                   )
 openai.api_key = st.secrets.openai_key
-st.title("PhysicsTalk: Exploring the Universe through Conversation.")
+st.title("PhysicsTalk")
 # st.info("Check out the full tutorial to build this app in our [blog post](https://blog.streamlit.io/build-a-chatbot-with-custom-data-sources-powered-by-llamaindex/)", icon="📃")
          
 if "messages" not in st.session_state.keys(): # Initialize the chat messages history
