@@ -3,4 +3,4 @@ openai
 llama-index
 nltk
 pypdf
-PyPdf2
+PyPDF2
