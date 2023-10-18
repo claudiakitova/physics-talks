@@ -3,8 +3,8 @@ from llama_index import VectorStoreIndex, ServiceContext, Document
 from llama_index.llms import OpenAI
 import openai
 from llama_index import SimpleDirectoryReader
-import pypdf
-from pypdf import PdfReader
+import PyPDF2
+# from pypdf import PdfReader
 
 st.set_page_config(page_title="PhysicsTalks", 
                    page_icon="☢️", layout="centered", 
