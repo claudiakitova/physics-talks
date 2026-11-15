@@ -56,7 +56,7 @@ except Exception:  # no secrets file, or the key is missing
 try:
     model = st.secrets["gemini_model"]
 except Exception:
-    model = "gemini-3.5-flash-lite"
+    model = "gemini-3.6-flash"
 
 
 def paper_name(file_name):

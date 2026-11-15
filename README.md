@@ -37,7 +37,7 @@ The interface is built with Streamlit's chat elements.
    ```
    gemini_key = "..."
    ```
-   To use a different model than `gemini-3.5-flash-lite`, add `gemini_model = "..."` on the next line.
+   To use a different model than `gemini-3.6-flash`, add `gemini_model = "..."` on the next line.
 4. Start the app:
    ```
    streamlit run streamlit_app.py
