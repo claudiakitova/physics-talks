@@ -1,4 +1,4 @@
-# PhysicsTalks ☢️
+# PhysicsTalks
 
 A chatbot that answers condensed matter physics questions from a library of about 40 scientific papers and books.
 
