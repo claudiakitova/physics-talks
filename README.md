@@ -20,7 +20,7 @@ It includes D. Khomskii's *Transition Metal Compounds* and G. Nénert's thesis *
 
 ## How it works
 
-1. The papers are split into passages and indexed for search with a small free model that runs inside the app. The index is saved in [storage/](storage/), so the app starts in seconds.
+1. The papers are split into passages and indexed for search with a small free model that runs inside the app. The index is stored as a release download, so the app starts in seconds.
 2. For each question, the app finds the most relevant passages.
 3. Google Gemini writes the answer from those passages and remembers the conversation.
 
@@ -44,6 +44,10 @@ The interface is built with Streamlit's chat elements.
    ```
 
 After adding or removing papers in `data/`, rebuild the index with `python build_index.py`.
+
+## New papers
+
+On the 1st and 15th of each month, a GitHub Action searches [OpenAlex](https://openalex.org) for new open-access papers on the library's topics (orbital ordering, Jahn-Teller, multiferroics, magnetoelectrics, transition-metal oxides) and opens a pull request with the PDFs. Only papers under open licenses (CC BY, CC BY-SA, CC0, public domain) are added. Merging the pull request adds them to the library, and the search index rebuilds automatically. Every added paper is listed in [data/papers.json](data/papers.json).
 
 ## Tools
 

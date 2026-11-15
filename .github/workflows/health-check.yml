@@ -1,22 +1,20 @@
-name: biweekly-health-check
+name: app-test
 
-# Every other Monday: installs the app from scratch and runs its test, on the oldest and
-# newest Python it supports. Opens an issue if something breaks, so it gets fixed before
-# visitors notice. Also runs whenever the requirements or the app change.
+# Installs the app from scratch and runs its test on the oldest and newest Python it
+# supports, whenever the app or its requirements change (including Dependabot pull requests).
 on:
-  schedule:
-    - cron: "0 8 * * 1"   # Mondays 08:00 UTC; the first step skips odd weeks
   push:
+    branches: [main]
     paths:
       - "requirements.txt"
       - "streamlit_app.py"
       - "local_embedding.py"
+      - "tests/**"
   pull_request:
   workflow_dispatch:
 
 permissions:
   contents: read
-  issues: write
 
 jobs:
   test:
@@ -27,37 +25,14 @@ jobs:
       matrix:
         python: ["3.10", "3.12"]
     steps:
-      - name: Every other week
-        id: gate
-        run: |
-          if [ "${{ github.event_name }}" = "schedule" ] && [ $(( 10#$(date -u +%V) % 2 )) -ne 0 ]; then
-            echo "Odd week: skipping."; echo "go=false" >> "$GITHUB_OUTPUT"
-          else
-            echo "go=true" >> "$GITHUB_OUTPUT"
-          fi
-
       - uses: actions/checkout@v4
-        if: steps.gate.outputs.go == 'true'
 
       - uses: actions/setup-python@v5
-        if: steps.gate.outputs.go == 'true'
         with:
           python-version: ${{ matrix.python }}
 
       - name: Install from scratch
-        if: steps.gate.outputs.go == 'true'
         run: pip install --no-cache-dir -r requirements.txt
 
       - name: Test the app
-        if: steps.gate.outputs.go == 'true'
         run: python tests/test_app.py
-
-      - name: Open an issue if it broke
-        if: failure() && github.event_name == 'schedule'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          TITLE="Health check failed"
-          if ! gh issue list --state open --search "$TITLE in:title" --json number --jq '.[0].number' | grep -q .; then
-            gh issue create --title "$TITLE" --body "A fresh install or the app test failed on Python ${{ matrix.python }}. Details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-          fi
