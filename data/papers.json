@@ -1,0 +1,79 @@
+{
+  "papers": [
+    {
+      "file": "Y.Lei_Chirality-Odd_Readout_of_Coherence-Mediated_Magnon_Spin_Transport.pdf",
+      "title": "Chirality-Odd Readout of Coherence-Mediated Magnon Spin Transport",
+      "authors": [
+        "Yanmeng Lei",
+        "Ji Zou",
+        "Sanchar Sharma",
+        "Tao Yu"
+      ],
+      "published": "2026-11-11",
+      "doi": "https://doi.org/10.48550/arxiv.2611.15214",
+      "openalex_id": "https://openalex.org/W7226039591",
+      "pdf_url": "https://arxiv.org/pdf/2611.15214",
+      "license": "cc-by",
+      "topics": [
+        "multiferroic"
+      ],
+      "added": "2026-11-15"
+    },
+    {
+      "file": "C.Lien_A_Perspective_on_Topological_Charge_Density_Wave_Materials.pdf",
+      "title": "A Perspective on Topological Charge Density Wave Materials",
+      "authors": [
+        "Chun-Tung Lien",
+        "Nidhish Thiruthukkal Puthenveettil",
+        "Alexander A. Balandin",
+        "Md Shafayat Hossain"
+      ],
+      "published": "2026-11-09",
+      "doi": "https://doi.org/10.48550/arxiv.2611.13360",
+      "openalex_id": "https://openalex.org/W7225779401",
+      "pdf_url": "https://arxiv.org/pdf/2611.13360",
+      "license": "cc-by",
+      "topics": [
+        "magnetoelectric"
+      ],
+      "added": "2026-11-15"
+    },
+    {
+      "file": "M.Silveirinha_Continuum_Photonic_Axion_Insulators.pdf",
+      "title": "Continuum Photonic Axion Insulators",
+      "authors": [
+        "Mário G. Silveirinha"
+      ],
+      "published": "2026-11-05",
+      "doi": "https://doi.org/10.48550/arxiv.2611.07893",
+      "openalex_id": "https://openalex.org/W7225413598",
+      "pdf_url": "https://arxiv.org/pdf/2611.07893",
+      "license": "cc-by",
+      "topics": [
+        "magnetoelectric"
+      ],
+      "added": "2026-11-15"
+    },
+    {
+      "file": "D.Werhahn_Complex_magnetism_in_a_transition_metal_nitride.pdf",
+      "title": "Complex magnetism in a transition metal nitride",
+      "authors": [
+        "Dominik Werhahn",
+        "S. Steinberg",
+        "C. Ritter",
+        "Felix Drötboom",
+        "John Paul Attfield",
+        "Simon D. Kloß"
+      ],
+      "published": "2026-11-02",
+      "doi": "https://doi.org/10.1038/s41467-026-78995-8",
+      "openalex_id": "https://openalex.org/W7225119336",
+      "pdf_url": "https://www.nature.com/articles/s41467-026-78995-8.pdf",
+      "license": "cc-by",
+      "topics": [
+        "transition metal oxide"
+      ],
+      "added": "2026-11-15"
+    }
+  ]
+}
