@@ -1,0 +1,40 @@
+name: daily-keep-awake
+
+# Every day: opens the live sites in a browser so the Streamlit app doesn't fall asleep,
+# and opens an issue if one of them isn't loading.
+on:
+  schedule:
+    - cron: "17 7 * * *"   # daily, 07:17 UTC
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  visit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install browser
+        run: |
+          pip install playwright==1.64.1
+          python -m playwright install --with-deps chromium
+
+      - name: Visit the sites
+        run: python .github/scripts/keep_awake.py
+
+      - name: Open an issue if a site is down
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TITLE="A live site isn't loading"
+          if ! gh issue list --state open --search "$TITLE in:title" --json number --jq '.[0].number' | grep -q .; then
+            gh issue create --title "$TITLE" --body "The daily check couldn't load one of the sites. Details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          fi
