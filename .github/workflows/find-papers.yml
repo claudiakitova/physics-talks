@@ -1,0 +1,43 @@
+name: find-new-papers
+
+# On the 1st and 15th of each month: looks for new open-access papers on the library's
+# topics and opens a pull request with them. Nothing joins the library until it's merged.
+on:
+  schedule:
+    - cron: "0 8 1,15 * *"   # 08:00 UTC on the 1st and 15th
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  find:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Search OpenAlex and download new papers
+        id: find
+        run: python .github/scripts/find_papers.py
+
+      - name: Open a pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ "${{ steps.find.outputs.added }}" = "0" ]; then
+            echo "Nothing new this time."; exit 0
+          fi
+          BRANCH="papers/$(date -u +%F)"
+          git checkout -b "$BRANCH"
+          git add data/
+          git commit -m "New papers ($(date -u +%F))"
+          git push -u origin "$BRANCH"
+          gh pr create --title "New papers ($(date -u +%F))" --body-file new_papers.md

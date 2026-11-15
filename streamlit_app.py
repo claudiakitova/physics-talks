@@ -1,3 +1,7 @@
+import io
+import shutil
+import urllib.request
+import zipfile
 from pathlib import Path
 
 import streamlit as st
@@ -113,14 +117,35 @@ if not api_key:
 Settings.llm = GoogleGenAI(model=model, api_key=api_key, temperature=0.3)
 
 
+INDEX_URL = "https://github.com/claudiakitova/physics-talks/releases/download/index/storage.zip"
+STORAGE = Path("storage")
+
+
+def wanted_version():
+    path = Path("index_version.txt")
+    return path.read_text().strip() if path.exists() else None
+
+
+def fetch_index(version):
+    """Download the search index from the release unless the right version is already here."""
+    have = (STORAGE / "VERSION").read_text().strip() if (STORAGE / "VERSION").exists() else None
+    if (STORAGE / "docstore.json").exists() and (version is None or have == version):
+        return
+    with urllib.request.urlopen(INDEX_URL, timeout=300) as response:
+        archive = response.read()
+    shutil.rmtree(STORAGE, ignore_errors=True)
+    zipfile.ZipFile(io.BytesIO(archive)).extractall(STORAGE)
+
+
 @st.cache_resource(show_spinner=False)
-def load_index():
+def load_index(version):
     with st.spinner("Loading the library..."):
+        fetch_index(version)
         Settings.embed_model = LocalEmbedding()
-        return load_index_from_storage(StorageContext.from_defaults(persist_dir="./storage"))
+        return load_index_from_storage(StorageContext.from_defaults(persist_dir=str(STORAGE)))
 
 
-index = load_index()
+index = load_index(wanted_version())
 
 if "messages" not in st.session_state:
     reset_chat()
