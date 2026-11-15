@@ -20,31 +20,31 @@ It includes D. Khomskii's *Transition Metal Compounds* and G. Nénert's thesis *
 
 ## How it works
 
-1. LlamaIndex reads every PDF in `data/` and builds a searchable index of the text.
-2. For each question, it pulls the most relevant passages from the papers.
-3. An OpenAI model writes the answer from those passages and remembers the conversation.
+1. The papers are split into passages and indexed for search with a small free model that runs inside the app. The index is saved in [storage/](storage/), so the app starts in seconds.
+2. For each question, the app finds the most relevant passages.
+3. Google Gemini writes the answer from those passages and remembers the conversation.
 
 The interface is built with Streamlit's chat elements.
 
 ## Run it yourself
 
-1. Get an OpenAI API key at https://platform.openai.com/account/api-keys.
+1. Get a free Gemini API key at https://aistudio.google.com/apikey.
 2. Install the requirements:
    ```
    pip install -r requirements.txt
    ```
 3. Create `.streamlit/secrets.toml` with your key:
    ```
-   openai_key = "sk-..."
+   gemini_key = "..."
    ```
-   To use a different model than `gpt-4o-mini`, add `openai_model = "..."` on the next line.
+   To use a different model than `gemini-3.5-flash-lite`, add `gemini_model = "..."` on the next line.
 4. Start the app:
    ```
    streamlit run streamlit_app.py
    ```
 
-The first start indexes all the papers and takes a few minutes.
+After adding or removing papers in `data/`, rebuild the index with `python build_index.py`.
 
 ## Tools
 
-Python, Streamlit, LlamaIndex, OpenAI
+Python, Streamlit, LlamaIndex, Google Gemini, FastEmbed
