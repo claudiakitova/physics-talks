@@ -16,8 +16,6 @@ The PDFs in [data/](data/) cover:
 - Soft magnetic materials and oxide spintronics
 - Superconductor-insulator transitions, time crystals, and phase transformations
 
-It includes D. Khomskii's *Transition Metal Compounds* and G. Nénert's thesis *Orbital Ordering and Multiferroics*.
-
 ## How it works
 
 1. The papers are split into passages and indexed for search with a small free model that runs inside the app. The index is stored as a release download, so the app starts in seconds.
