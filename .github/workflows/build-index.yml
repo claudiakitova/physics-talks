@@ -49,13 +49,13 @@ jobs:
         run: |
           VERSION="$(date -u +%Y-%m-%dT%H%MZ)"
           echo "$VERSION" > storage/VERSION
-          (cd storage && zip -q -r ../storage.zip .)
+          (cd storage && zip -q -r "$RUNNER_TEMP/storage.zip" .)
           gh release view index >/dev/null 2>&1 || gh release create index --title "Search index" --notes "The app downloads storage.zip from here. Rebuilt automatically when papers change."
-          gh release upload index storage.zip --clobber
+          gh release upload index "$RUNNER_TEMP/storage.zip" --clobber
           echo "$VERSION" > index_version.txt
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git pull --rebase
           git add index_version.txt
           git commit -m "Search index updated"
+          git pull --rebase
           git push
