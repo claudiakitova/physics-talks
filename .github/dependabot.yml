@@ -10,15 +10,6 @@ updates:
     cooldown:
       default-days: 14
     open-pull-requests-limit: 5
-    # The app runs on Python 3.10. Skip versions that need Python 3.11+.
-    # Remove these after redeploying the app on Python 3.12.
-    ignore:
-      - dependency-name: "streamlit"
-        versions: [">=1.66.0"]
-      - dependency-name: "google-genai"
-        versions: [">=2.34.0"]
-      - dependency-name: "onnxruntime"
-        versions: [">=1.24.0"]
 
   - package-ecosystem: "github-actions"
     directory: "/"
