@@ -33,6 +33,13 @@ jobs:
       - name: Install
         run: pip install -r requirements.txt
 
+      - name: Download text-splitting data
+        # NLTK won't read from shared folders, so give it a private one.
+        run: |
+          mkdir -m 700 -p "$HOME/nltk_data"
+          echo "NLTK_DATA=$HOME/nltk_data" >> "$GITHUB_ENV"
+          python -c "import nltk, os; [nltk.download(r, download_dir=os.path.expanduser('~/nltk_data'), quiet=True) for r in ('stopwords', 'punkt_tab')]"
+
       - name: Build the index
         run: python build_index.py
 
