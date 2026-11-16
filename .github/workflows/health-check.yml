@@ -1,7 +1,7 @@
 name: app-test
 
-# Installs the app from scratch and runs its test on the oldest and newest Python it
-# supports, whenever the app or its requirements change (including Dependabot pull requests).
+# Installs the app from scratch and runs its test on Python 3.12 (what the app runs on)
+# whenever the app or its requirements change (including Dependabot pull requests).
 on:
   push:
     branches: [main]
@@ -23,7 +23,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python: ["3.10", "3.12"]
+        python: ["3.12"]
     steps:
       - uses: actions/checkout@v7
 
